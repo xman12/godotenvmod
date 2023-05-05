@@ -1,3 +1,3 @@
-module github.com/xman12/godotenv
+module github.com/xman12/godotenvmod
 
 go 1.12
