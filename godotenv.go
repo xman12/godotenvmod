@@ -168,7 +168,7 @@ func Marshal(envMap map[string]string) (string, error) {
 			lines = append(lines, fmt.Sprintf(`%s=%d`, k, d))
 		} else {
 			if v == "false" || v == "true" {
-				lines = append(lines, fmt.Sprintf(`%s=%d`, k, d))
+				lines = append(lines, fmt.Sprintf(`%s=%s`, k, v))
 			} else {
 				lines = append(lines, fmt.Sprintf(`%s="%s"`, k, doubleQuoteEscape(v)))
 			}
