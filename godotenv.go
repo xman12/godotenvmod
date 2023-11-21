@@ -170,7 +170,7 @@ func Marshal(envMap map[string]string) (string, error) {
 			if v == "false" || v == "true" {
 				lines = append(lines, fmt.Sprintf(`%s=%s`, k, v))
 			} else {
-				lines = append(lines, fmt.Sprintf(`%s="%s"`, k, doubleQuoteEscape(v)))
+				lines = append(lines, fmt.Sprintf(`%s='%s'`, k, doubleQuoteEscape(v)))
 			}
 		}
 	}
@@ -218,15 +218,15 @@ func readFile(filename string) (envMap map[string]string, err error) {
 }
 
 func doubleQuoteEscape(line string) string {
-	//for _, c := range doubleQuoteSpecialChars {
-	//	toReplace := "\\" + string(c)
-	//	if c == '\n' {
-	//		toReplace = `\n`
-	//	}
-	//	if c == '\r' {
-	//		toReplace = `\r`
-	//	}
-	//	line = strings.Replace(line, string(c), toReplace, -1)
-	//}
+	for _, c := range doubleQuoteSpecialChars {
+		toReplace := string(c)
+		if c == '\n' {
+			toReplace = `\n`
+		}
+		if c == '\r' {
+			toReplace = `\r`
+		}
+		line = strings.Replace(line, string(c), toReplace, -1)
+	}
 	return line
 }
